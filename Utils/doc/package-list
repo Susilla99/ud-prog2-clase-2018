@@ -1,0 +1,6 @@
+utils.ventanas.ventanaBitmap
+utils.ventanas.ventanaConsola
+utils.ventanas.ventanaJuego
+utils.ventanas.ventanaJuego.eventosVentanaGrafica
+utils.ventanas.ventanaJuego.img
+utils.vlcPlayer
