@@ -8,6 +8,7 @@ public class Calculadora {
 		calc1.pulsarCuadrado();
 		calc1.verEnPantalla();
 		Calculadora calc2 = new Calculadora();
+		
 		calc2.verEnPantalla();
 	}
 	
