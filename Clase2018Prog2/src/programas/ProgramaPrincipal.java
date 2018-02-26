@@ -1,6 +1,9 @@
-package soldados;
+package programas;
 
+import soldados.Batallon;
+import soldados.clones.Artillero;
 import soldados.clones.Soldado;
+import soldados.clones.francotiradores.Francotirador;
 
 public class ProgramaPrincipal {
 
@@ -28,7 +31,7 @@ public class ProgramaPrincipal {
 				break;
 			}
 			
-			soldadoInicial = new Soldado("Soldado", arma);
+			soldadoInicial = new Francotirador("Soldado", arma, 10.0);
 			Batallon batallon = new Batallon(soldadoInicial, nombreBatallon);
 			batallon.escribirPantalla();
 		}

@@ -1,6 +1,6 @@
 package soldados.clones;
 
-public class Soldado {
+public abstract class Soldado {
 
 	private String nombre;
 	private String arma;
@@ -19,10 +19,7 @@ public class Soldado {
 		this.nombre=nombre;
 	}
 	
-	public Soldado crearClon(String nombre){
-		Soldado soldadoClonado= new Soldado(nombre,this.arma);
-		return soldadoClonado;
-	}
+	public abstract Soldado crearClon(String nombre);
 	
 	public String getNombre() {
 		return nombre;
