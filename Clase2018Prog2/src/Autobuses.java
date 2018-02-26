@@ -12,6 +12,16 @@ public class Autobuses {
 	String companyia;
 	String nombreConductor;
 	
+	Autobuses(){
+	}
+	
+	Autobuses(String nombreConductor){
+		this.nombreConductor=nombreConductor;
+	}
+	Autobuses(int numeroRuedas){
+		this.numRuedas=numeroRuedas;
+	}
+	
 	public int getNumRuedas() {
 		return numRuedas;
 	}
@@ -45,6 +55,17 @@ public class Autobuses {
 	
 	void escribirDatos()
 	{
-		System.out.println("Nombre:"+nombreConductor+" Compañia:"+companyia+" NumeroAsientos:"+numAsientos);
+		System.out.println("Nombre:"+nombreConductor+" Compaï¿½ia:"+companyia+" NumeroAsientos:"+numAsientos);
+	}
+	
+	Autobuses CrearClon(){
+		Autobuses autobusClonado = new Autobuses();
+		autobusClonado.companyia = companyia;
+		autobusClonado.nombreConductor = nombreConductor;
+		autobusClonado.numAsientos=numAsientos;
+		autobusClonado.numPisos=numPisos;
+		autobusClonado.numRuedas = numRuedas;
+		return autobusClonado;
+		
 	}
 }

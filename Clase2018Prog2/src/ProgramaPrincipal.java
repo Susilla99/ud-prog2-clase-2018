@@ -27,6 +27,28 @@ public class ProgramaPrincipal {
 		
 		autobus1.escribirDatos();
 		autobus2.escribirDatos();
+		ProgramaPrincipal programa = new ProgramaPrincipal();
+		int numeroAProbar = 1;
+		System.out.println("Nombre autobus1: "+ autobus1.nombreConductor);
+		System.out.println("numero a probar= "+numeroAProbar);
+		programa.cambiarNombreConductor(autobus1,numeroAProbar);
+		System.out.println("Nombre despues del metodo ="+ autobus1.nombreConductor);
+		System.out.println("numero a probar despues del metodo= "+numeroAProbar);
+		
+		Autobuses autobuses4 = new Autobuses("Juanito");
+		System.out.println("autobus4: "+autobuses4.nombreConductor);
+		
 	}
 
+	void cambiarNombreConductor(Autobuses autobus, int numero){
+		//autobus.setNombreConductor("PEPE");
+		numero=15;
+		Autobuses autobusClon = autobus.CrearClon();
+		System.out.println("Nombre del autobusClon = "+autobusClon.nombreConductor);
+		autobusClon.nombreConductor="Javi";
+		System.out.println("Nombre conductor= "+autobus.nombreConductor);
+
+		System.out.println("Nombre conductorClon= "+autobusClon.nombreConductor);
+		System.out.println("el numero="+numero);
+	}
 }
