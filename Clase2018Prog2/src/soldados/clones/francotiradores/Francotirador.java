@@ -8,9 +8,7 @@ public class Francotirador extends Soldado {
 
 	public Francotirador(String nombre, String arma, double longitud){
 		super(nombre,arma);
-		this.long_mira=longitud;
-		
-		
+		this.long_mira=longitud;	
 	}
 	
 	public double getLong_mira() {
@@ -19,6 +17,12 @@ public class Francotirador extends Soldado {
 
 	public void setLong_mira(double long_mira) {
 		this.long_mira = long_mira;
+	}
+
+	@Override
+	public Soldado crearClon(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
