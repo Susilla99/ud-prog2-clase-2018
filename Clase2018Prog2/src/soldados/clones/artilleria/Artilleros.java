@@ -13,4 +13,10 @@ public class Artilleros extends Soldado {
 		this.num_balas = num_balas;
 	}
 
+	@Override
+	public Soldado crearClon(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

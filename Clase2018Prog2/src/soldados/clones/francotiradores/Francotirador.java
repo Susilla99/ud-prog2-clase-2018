@@ -21,8 +21,10 @@ public class Francotirador extends Soldado {
 
 	@Override
 	public Soldado crearClon(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO Auto-generated method stu
+		Francotirador fClonado = new Francotirador(nombre, this.getArma(), this.getLong_mira());
+		
+		return fClonado;
 	}
 
 }

@@ -1,5 +1,8 @@
 package soldados;
-import soldados.clones.*;
+
+import soldados.clones.Artillero;
+import soldados.clones.Soldado;
+
 public class Batallon {
 
 	Soldado s1;
@@ -16,7 +19,7 @@ public class Batallon {
 		this.s3= soldado.crearClon("Soldado3");
 //		this.s3.nombre="Soldado3";
 		this.nombreBatallon=nombreBatallon;
-		Artillero a = new Artillero();
+		
 	}
 	
 	public void escribirPantalla()
