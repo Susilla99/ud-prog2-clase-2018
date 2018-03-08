@@ -57,9 +57,51 @@ public class Electrodomestico {
 	}
 	
 	public float precioFinal(){
+		float precioFinal=0;
+		switch(consumoEnergetico)
+		{
+		case 'A':
+			precioFinal=precioBase+100;
+			break;
+		case 'B':
+			precioFinal=precioBase+80;
+			break;
+		case 'C':
+			precioFinal=precioBase+60;
+			break;
+		case 'D':
+			precioFinal=precioBase+50;
+			break;
+		case 'E':
+			precioFinal=precioBase+30;
+			break;
+		case 'F':
+			precioFinal = precioBase+10;
+		}
 		
+		if(peso>=0 && peso <=19){
+			precioFinal+=10;
+		}else
+		{
+			if(peso>19 && peso<=49)
+			{
+				precioFinal+=50;
+			}else
+			{
+				if(peso>50 && peso<=79)
+				{
+					precioFinal+=80;
+				}else
+				{
+					precioFinal+=100;
+				}
+			}
+		}
 		
-		
-		return 0;
+		return precioFinal;
+	}
+	
+	public void generarFactura(){
+		System.out.println("Factura");
 	}
 }
