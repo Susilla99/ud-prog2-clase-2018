@@ -7,7 +7,7 @@ public class Lavadora extends Electrodomestico {
 	
 	
 	public Lavadora() {
-		// TODO Auto-generated constructor stub
+		super();
 		this.carga=CARGA_INICIAL;
 	}
 

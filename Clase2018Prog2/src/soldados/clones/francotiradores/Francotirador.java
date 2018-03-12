@@ -2,7 +2,7 @@ package soldados.clones.francotiradores;
 
 import soldados.clones.Soldado;
 
-public class Francotirador extends Soldado {
+public class Francotirador extends Soldado implements ITiradores{
 	
 	private double long_mira;
 
@@ -25,6 +25,12 @@ public class Francotirador extends Soldado {
 		Francotirador fClonado = new Francotirador(nombre, this.getArma(), this.getLong_mira());
 		
 		return fClonado;
+	}
+
+	@Override
+	public int getNumDisparos() {
+		// TODO Auto-generated method stub
+		return 8;
 	}
 
 }
