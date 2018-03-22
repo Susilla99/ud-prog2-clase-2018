@@ -1,30 +1,32 @@
 package soldados;
 
+import java.util.ArrayList;
+
 import soldados.clones.Artillero;
 import soldados.clones.Soldado;
+import soldados.clones.francotiradores.Francotirador;
 
 public class Batallon {
 
-	Soldado s1;
-	Soldado s2;
-	Soldado s3;
+	ArrayList<Soldado> soldadosBatallon= new ArrayList<Soldado>();
 	String nombreBatallon;
 	
-	public Batallon(Soldado soldado, String nombreBatallon){
+	public Batallon(String nombreBatallon, int numeroSoldados){
 		
-		this.s1=soldado.crearClon("Soldado1");
-//		this.s1.nombre="Soldado1";
-		this.s2=soldado.crearClon("Soldado2");
-//		this.s2.nombre="Soldado2";
-		this.s3= soldado.crearClon("Soldado3");
-//		this.s3.nombre="Soldado3";
+		for(int i = 0;i<numeroSoldados;i++){
+			Soldado s = new Francotirador("soldado"+i, "rifle", 200.0+i);
+			soldadosBatallon.add(s);
+		}
+		
 		this.nombreBatallon=nombreBatallon;
 		
 	}
 	
 	public void escribirPantalla()
 	{
-		System.out.println("Batallon "+ nombreBatallon+ " con soldado "+s1.getNombre()+" y arma "+s1.getArma()+ " con soldado "+s2.getNombre()+" y arma "+s2.getArma()+" con soldado "+s3.getNombre()+" y arma "+s3.getArma());
+		for(int i =0; i<soldadosBatallon.size();i++){
+			System.out.println(soldadosBatallon.get(i).getNombre());
+		}
 	}
 	
 }

@@ -5,6 +5,14 @@ public class ProgrPrincipal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		Lavadora l = new Lavadora(200f,30);
+		System.out.println(l);
+		Televison t = new Televison();
+		System.out.println(t);
+		
+		
+		
+		
 		Electrodomestico[] arrayElectrodomestico = new Electrodomestico[10]; 
 		arrayElectrodomestico[0]= new Lavadora(200,15);
 		arrayElectrodomestico[1]= new Lavadora(250,40);

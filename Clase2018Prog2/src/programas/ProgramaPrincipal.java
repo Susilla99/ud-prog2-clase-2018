@@ -39,15 +39,17 @@ public class ProgramaPrincipal {
 //		}
 //		
 		
-		ITiradores tirador = new Francotirador("Pepe", "Cuchillo", 100);
-		ITiradores[] tiradores = new ITiradores[2];
-		tiradores[0]= tirador;
-		tiradores[1]= new TiradorPistola();
-		for(int i = 0; i<tiradores.length;i++){
-			System.out.println(""+tiradores[i].getNumDisparos());
-		}
+//		ITiradores tirador = new Francotirador("Pepe", "Cuchillo", 100);
+//		ITiradores[] tiradores = new ITiradores[2];
+//		tiradores[0]= tirador;
+//		tiradores[1]= new TiradorPistola();
+//		for(int i = 0; i<tiradores.length;i++){
+//			System.out.println(""+tiradores[i].getNumDisparos());
+//		}
 		
 		
+		Batallon b = new Batallon( "Batallon1", 500);
+		b.escribirPantalla();
 	}
 
 }

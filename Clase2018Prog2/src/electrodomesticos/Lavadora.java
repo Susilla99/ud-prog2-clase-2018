@@ -2,6 +2,15 @@ package electrodomesticos;
 
 public class Lavadora extends Electrodomestico {
 
+	@Override
+	public String toString() {
+		String devolucion="";
+		devolucion = carga+" carga inicial: "+CARGA_INICIAL;
+		
+		
+		return devolucion;
+	}
+
 	private float carga;
 	private static float CARGA_INICIAL=5;
 	
