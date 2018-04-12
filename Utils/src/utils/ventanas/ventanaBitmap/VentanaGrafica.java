@@ -627,7 +627,8 @@ public void anyadeBoton( String texto, ActionListener evento ) {
 			}
 		});
 		v.setDibujadoInmediato( false );
-		for (int i=0; i<=200; i++) {
+		v.espera( 5000 );
+		for (int i=0; i<=1000; i++) {
 			v.borra();
 			v.dibujaImagen( "/utils/ventanas/ventanaJuego/img/" + "UD-green.png",
 				100, 100, 0.5+i/200.0, Math.PI / 100 * i, 0.9f );
