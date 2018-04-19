@@ -53,7 +53,10 @@ public class JLabelGraficoAjustado extends JLabel {
 	    	setBorder( BorderFactory.createLineBorder( Color.blue ));
 	    	setText( nombreImagenObjeto );
         }
+        if (anchura <= 0 && imagenObjeto!=null) anchura = imagenObjeto.getWidth();
+        if (altura <= 0 && imagenObjeto!=null) anchura = imagenObjeto.getHeight();
     	setSize( anchura, altura );
+    	setPreferredSize( new Dimension( anchura, altura ));
 	}
 	
 	/** Devuelve la anchura del rectángulo gráfico del objeto
@@ -112,6 +115,7 @@ public class JLabelGraficoAjustado extends JLabel {
 	// Dibuja este componente de una forma no habitual
 	@Override
 	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if (imagenObjeto!=null) {
 			Graphics2D g2 = (Graphics2D) g;  // El Graphics realmente es Graphics2D
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -136,8 +140,6 @@ public class JLabelGraficoAjustado extends JLabel {
 			// Transparencia
 			g2.setComposite(AlphaComposite.getInstance( AlphaComposite.SRC_OVER, opacidad ) ); // Incorporar la transparencia definida
 	        g2.drawImage(imagenObjeto, iniX, iniY, anc, alt, null);
-        } else {  // sin imagen
-			super.paintComponent(g);
 		}
 	}
 
