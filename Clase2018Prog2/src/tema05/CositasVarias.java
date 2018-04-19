@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/** Repaso de dos conceptos:
+ * 1) Wrappers
+ * 2) Fechas
+ */
 public class CositasVarias {
 
 	public static void main(String[] args) {
