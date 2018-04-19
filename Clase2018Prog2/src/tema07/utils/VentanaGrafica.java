@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-/** Clase ventana sencilla para dibujado
+/** Clase ventana sencilla para dibujado directo a la ventana
  */
 public class VentanaGrafica {
 	private JFrame ventana;       // Ventana que se visualiza
@@ -619,7 +619,7 @@ public void anyadeBoton( String texto, ActionListener evento ) {
 	 * @param args	No utilizado
 	 */
 	public static void main(String[] args) {
-		VentanaGrafica v = new VentanaGrafica( 600, 480, "Test Ventana Gráfica" );
+		VentanaGrafica v = new VentanaGrafica( 800, 380, "Test Ventana Gráfica" );
 		v.anyadeBoton( "Pon dibujado inmediato", new ActionListener() {  // Para ver cómo se ve con flickering si se dibujan cosas una a una
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -628,12 +628,28 @@ public void anyadeBoton( String texto, ActionListener evento ) {
 		});
 		v.setDibujadoInmediato( false );
 		v.espera( 5000 );
+		// Prueba 1: escudo verde que se mueve y sube y baja
+		int altura = v.getAltura();
+		boolean subiendo = true;
+		for (int i=0; i<=800; i++) {
+			v.borra();
+			v.dibujaImagen( "UD-green.png", i, altura, 1.0, 0.0, 1.0f );
+			if (subiendo) {
+				altura--;
+				if (altura<=0) subiendo = false;
+			} else {
+				altura++;
+				if (altura>=v.getAltura()) subiendo = true;
+			}
+			v.repaint();
+			v.espera( 10 );
+		}
+		v.espera( 5000 );
+		// Prueba 2: escudos y formas girando y zoomeando
 		for (int i=0; i<=1000; i++) {
 			v.borra();
-			v.dibujaImagen( "UD-green.png",
-				100, 100, 0.5+i/200.0, Math.PI / 100 * i, 0.9f );
-			v.dibujaImagen( "/utils/ventanas/ventanaJuego/img/" + "UD-magenta.png",
-					500, 100, 100, 50, 1.2, Math.PI / 100 * i, 0.1f );
+			v.dibujaImagen( "UD-green.png", 100, 100, 0.5+i/200.0, Math.PI / 100 * i, 0.9f );
+			v.dibujaImagen( "UD-magenta.png", 500, 100, 100, 50, 1.2, Math.PI / 100 * i, 0.1f );
 			v.dibujaRect( 20, 20, 160, 160, 0.5f, Color.red );
 			v.dibujaRect( 0, 0, 100, 100, 1.5f, Color.blue );
 			v.dibujaCirculo( 500, 100, 50, 1.5f, Color.orange );
