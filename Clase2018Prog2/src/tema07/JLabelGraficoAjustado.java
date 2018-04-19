@@ -21,9 +21,9 @@ public class JLabelGraficoAjustado extends JLabel {
 
 	/** Crea un nuevo JLabel gráfico.<br>
 	 * Si no existe el fichero de imagen, se crea un rectángulo blanco con borde rojo
-	 * @param nombreImagenObjeto	Nombre fichero donde está la imagen del objeto
-	 * @param anchura	Anchura del label en píxels (si es <= 0 ocupa todo el ancho)
-	 * @param altura	Altura del label en píxels (si es <= 0 ocupa todo el alto)
+	 * @param nombreImagenObjeto	Nombre fichero donde está la imagen del objeto. Puede ser también un nombre de recurso desde el paquete de esta clase.
+	 * @param anchura	Anchura del gráfico en píxels (si es <= 0 ocupa todo el ancho)
+	 * @param altura	Altura del gráfico en píxels (si es <= 0 ocupa todo el alto)
 	 */
 	public JLabelGraficoAjustado( String nombreImagenObjeto, int anchura, int altura ) {
 		setName( nombreImagenObjeto );
@@ -146,7 +146,7 @@ public class JLabelGraficoAjustado extends JLabel {
 	public static void main(String[] args) {
 		JFrame f = new JFrame( "Prueba JLabelGraficoAjustado" );
 		f.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		JLabelGraficoAjustado label = new JLabelGraficoAjustado( "src/tema07/coche.png", 300, 300 );
+		JLabelGraficoAjustado label = new JLabelGraficoAjustado( "coche.png", 300, 300 );
 			// TODO probar este 300, 300 con diferentes tamaños. Si x<=0 ajusta el ancho y si es y<=0 ajusta el alto
 		f.setSize( 600, 400 );
 		f.add( label, BorderLayout.CENTER );

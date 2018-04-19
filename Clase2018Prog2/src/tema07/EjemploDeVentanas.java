@@ -46,6 +46,7 @@ class MiActionListener2 implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// Manera 1 de acceder: botón recibido previamente
 		System.out.println( b.getText() );  
+		b.setForeground(Color.red);
 		b.setBackground(Color.red);
 		// Manera 2: a través del parámetro del gestor de eventos (ActionEvent)
 		if (e.getSource() instanceof JButton) {
@@ -53,6 +54,8 @@ class MiActionListener2 implements ActionListener {
 			JButton b2 = (JButton) e.getSource();  // b) guardarlo en variable y hacerlo después
 			b2.setBackground( Color.magenta );
 		}
+		// if (e.getSource()==b)  // Así se compararía con un botón en particular si hay varios
+		System.out.println( b.toString() );
 	}
 }
 
@@ -63,7 +66,7 @@ class MiMouseListener2 extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println( "click");
-		calculoGordo();  // Esto va a dar problemas... ¿por qué?
+		// calculoGordo();  // Esto va a dar problemas... ¿por qué?
 	}
 	
 		private void calculoGordo() {
