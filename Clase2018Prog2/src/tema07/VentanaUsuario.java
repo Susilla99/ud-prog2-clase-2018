@@ -7,7 +7,7 @@ public class VentanaUsuario extends JFrame {
 		// 1.- Inicializar la ventana
 		setTitle( "Usuario 1" );
 		setSize( 320, 200 );
-		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		// 2.- Crear sus componentes y contenedores
 		// 3.- Asociar componentes a contenedores
 		// 4.- Crear y asociar eventos a componentes
