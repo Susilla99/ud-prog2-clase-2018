@@ -1,4 +1,4 @@
-package tema07;
+package tema07.utils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
