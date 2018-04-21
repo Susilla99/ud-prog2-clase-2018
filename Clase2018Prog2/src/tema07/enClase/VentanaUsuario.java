@@ -1,4 +1,4 @@
-package tema07;
+package tema07.enClase;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
