@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-/** Clase ventana sencilla para dibujado
+/** Clase ventana sencilla para dibujado directo a la ventana
  */
 public class VentanaGrafica {
 	private JFrame ventana;       // Ventana que se visualiza
@@ -111,6 +111,13 @@ public class VentanaGrafica {
 	public void acaba() {
 		ventana.dispose();
 		cerrada = true;
+	}
+	
+	/** Devuelve el objeto ventana (JFrame) correspondiente a la ventana gráfica
+	 * @return	Objeto JFrame de la ventana
+	 */
+	public JFrame getJFrame() {
+		return ventana;
 	}
 	
 	/** Consultor de estado de visibilidad de la ventana
@@ -614,26 +621,33 @@ public void anyadeBoton( String texto, ActionListener evento ) {
 	b.addActionListener( evento );
 }
 
-	
-	/** Método main de prueba de la clase
-	 * @param args	No utilizado
-	 */
-	public static void main(String[] args) {
-		VentanaGrafica v = new VentanaGrafica( 600, 480, "Test Ventana Gráfica" );
-		v.anyadeBoton( "Pon dibujado inmediato", new ActionListener() {  // Para ver cómo se ve con flickering si se dibujan cosas una a una
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				v.setDibujadoInmediato( true );
+	// Prueba 1: escudo verde que se mueve y sube y baja
+	private static void movimiento() {
+		int altura = v.getAltura();
+		boolean subiendo = true;
+		for (int i=0; i<=800; i++) {
+			v.borra();
+			v.dibujaImagen( "UD-green.png", i, altura, 1.0, 0.0, 1.0f );
+			if (subiendo) {
+				altura--;
+				if (altura<=0) subiendo = false;
+			} else {
+				altura++;
+				if (altura>=v.getAltura()) subiendo = true;
 			}
-		});
-		v.setDibujadoInmediato( false );
+			v.repaint();
+			v.espera( 10 );
+		}
 		v.espera( 5000 );
+		v.acaba();
+	}
+	
+	// Prueba 2: escudos y formas girando y zoomeando
+	private static void giros() {
 		for (int i=0; i<=1000; i++) {
 			v.borra();
-			v.dibujaImagen( "/utils/ventanas/ventanaJuego/img/" + "UD-green.png",
-				100, 100, 0.5+i/200.0, Math.PI / 100 * i, 0.9f );
-			v.dibujaImagen( "/utils/ventanas/ventanaJuego/img/" + "UD-magenta.png",
-					500, 100, 100, 50, 1.2, Math.PI / 100 * i, 0.1f );
+			v.dibujaImagen( "UD-green.png", 100, 100, 0.5+i/200.0, Math.PI / 100 * i, 0.9f );
+			v.dibujaImagen( "UD-magenta.png", 500, 100, 100, 50, 1.2, Math.PI / 100 * i, 0.1f );
 			v.dibujaRect( 20, 20, 160, 160, 0.5f, Color.red );
 			v.dibujaRect( 0, 0, 100, 100, 1.5f, Color.blue );
 			v.dibujaCirculo( 500, 100, 50, 1.5f, Color.orange );
@@ -644,6 +658,72 @@ public void anyadeBoton( String texto, ActionListener evento ) {
 		}
 		v.espera( 5000 );
 		v.acaba();
+	}
+
+	// Prueba 3: tiro parabólico
+	private static void tiro() {
+		boolean seguir = true;
+		v.setMensaje( "Click ratón para disparar (con fuerza y ángulo)");
+		double xLanz = 20;
+		double yLanz = v.getAltura()-20;
+		while (seguir) {
+			Point pMovto = v.getRatonMovido();
+			Point pPuls = v.getRatonPulsado();
+			v.borra();
+			v.dibujaCirculo( xLanz, yLanz, 10, 3.0f, Color.MAGENTA );
+			if (pPuls!=null) {  // Se hace click: disparar!
+				disparar( xLanz, yLanz, pPuls.getX(), pPuls.getY() );
+			} else if (pMovto!=null) {  // No se hace click: dibujar flecha
+				v.dibujaFlecha( xLanz, yLanz, pMovto.getX(), pMovto.getY(), 2.0f, Color.GREEN, 25 );
+			}
+			v.repaint();
+			if (v.estaCerrada()) seguir = false;  // Acaba cuando el usuario cierra la ventana
+			v.espera( 20 ); // Pausa 20 msg (aprox 50 frames/sg)
+		}
+	}
+		// Hace un disparo con la velocidad marcada por el vector con gravedad
+		private static void disparar( double x1, double y1, double x2, double y2 ) {
+			double G = 9.8; // Aceleración de la gravedad
+			double velX = x2-x1; double velY = y2-y1;
+			v.setMensaje( "Calculando disparo con velocidad (" + velX + "," + velY + ")" );
+			double x = x1; double y = y1;  // Punto de disparo
+			int pausa = 10; // msg de pausa de animación
+			double tempo = pausa / 1000.0; // tiempo entre frames de animación (en segundos)
+			do {
+				v.dibujaCirculo( x, y, 1.0, 1.0f, Color.blue );  // Dibuja punto
+				x = x + velX * tempo; // Mueve x (según la velocidad)
+				y = y + velY * tempo;// Mueve y (según la velocidad)
+				velY = velY + G * 10 * tempo; // Cambia la velocidad de y (por efecto de la gravedad)
+				v.repaint();
+				v.espera( pausa ); // Pausa 20 msg (aprox 50 frames/sg)
+			} while (y<y1);  // Cuando pasa hacia abajo la vertical se para
+			v.espera( 2000 ); // Pausa de 2 segundos
+			v.setMensaje( "Vuelve a disparar!" );
+		}
+	
+		private static VentanaGrafica v;
+	/** Método main de prueba de la clase
+	 * @param args	No utilizado
+	 */
+	public static void main(String[] args) {
+		v = new VentanaGrafica( 800, 600, "Test Ventana Gráfica" );
+		v.anyadeBoton( "Pon dibujado inmediato", new ActionListener() {  // Para ver cómo se ve con flickering si se dibujan cosas una a una
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				v.setDibujadoInmediato( true );
+			}
+		});
+		v.setDibujadoInmediato( false );
+		Object opcion = JOptionPane.showInputDialog( v.getJFrame(), "¿Qué quieres probar?",
+			"Selección de test", JOptionPane.QUESTION_MESSAGE, null, 
+			new String[] { "Movimiento", "Giros", "Tiro" }, "Tiro" );
+		if ( "Movimiento".equals( opcion ) ) {
+			movimiento();
+		} else if ( "Giros".equals( opcion ) ) {
+			giros();
+		} else if ( "Tiro".equals( opcion ) ) {
+			tiro();
+		}
 	}
 	
 	/** Añade un escuchador al cambio de tamaño del panel de dibujado de la ventana
